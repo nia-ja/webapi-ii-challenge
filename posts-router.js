@@ -15,7 +15,28 @@ router.get('/', async (req, res) => {
         error: "The posts information could not be retrieved."
       });
     }
-  });
+});
+
+// GET post by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const post = await Posts.findById(req.params.id);
+        console.log(post);
+        if (post.length) {
+            res.status(200).json(post);
+        } else {
+            res.status(404).json({ message: "The post with the specified ID does not exist." })
+        }
+    } catch (error) {
+        res.status(500).json({ error: "The post information could not be retrieved." })
+    }
+})
+
+// POST
+
+// DELETE
+
+// PUT
 
 
 
